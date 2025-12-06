@@ -30,6 +30,27 @@ def view_books():
         print(f"   Author: {book['author']}")
         print(f"   Status: {status}")
 
+def search_book():
+    """Search for a book by title keyword"""
+    print("\n--- SEARCH BOOK ---")
+    query = input("Enter search keyword: ").lower()
+    
+    found_books = []
+    
+    for book in library:
+        if query in book['title'].lower():
+            found_books.append(book)
+    
+    if len(found_books) == 0:
+        print(f"No books found with keyword '{query}'.")
+    else:
+        print(f"\n✓ Found {len(found_books)} book(s):")
+        for i, book in enumerate(found_books, 1):
+            status = "Available" if book['is_available'] else "Not Available"
+            print(f"\n{i}. Title: {book['title']}")
+            print(f"   Author: {book['author']}")
+            print(f"   Status: {status}")
+
 def main():
     while True:
         print("\n--- LIBRARY MANAGEMENT SYSTEM ---")
@@ -45,7 +66,7 @@ def main():
         elif choice == '2':
             view_books()
         elif choice == '3':
-            print("Feature coming soon...")
+            search_book()
         elif choice == '4':
             print("Exiting program.")
             break
