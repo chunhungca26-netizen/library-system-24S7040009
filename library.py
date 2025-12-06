@@ -7,16 +7,28 @@ def add_book():
     title = input("Enter book title: ")
     author = input("Enter author name: ")
     
-    # Create book dictionary
     book = {
         'title': title,
         'author': author,
         'is_available': True
     }
     
-    # Add to library
     library.append(book)
     print(f"✓ Book '{title}' added successfully!")
+
+def view_books():
+    """Display all books in the library"""
+    print("\n--- ALL BOOKS ---")
+    
+    if len(library) == 0:
+        print("No books in the library yet.")
+        return
+    
+    for i, book in enumerate(library, 1):
+        status = "Available" if book['is_available'] else "Not Available"
+        print(f"\n{i}. Title: {book['title']}")
+        print(f"   Author: {book['author']}")
+        print(f"   Status: {status}")
 
 def main():
     while True:
@@ -31,7 +43,7 @@ def main():
         if choice == '1':
             add_book()
         elif choice == '2':
-            print("Feature coming soon...")
+            view_books()
         elif choice == '3':
             print("Feature coming soon...")
         elif choice == '4':
